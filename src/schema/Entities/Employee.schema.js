@@ -7,9 +7,8 @@ exports.types = `
         tin: String!
         philhealth: String!
         hdmf: String!
-
         position: Position!
-
+        role: String!
         corrective_action: [Corrective_Action]
         work_history: [Work_History]
         transcript: [Transcript]
@@ -48,7 +47,7 @@ exports.mutations = `
         tin: String
         philhealth: String
         hdmf: String
-
+        role: String!
         position: Position_Input!
 
         corrective_action: [Corrective_Action_Input]

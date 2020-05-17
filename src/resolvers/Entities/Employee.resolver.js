@@ -13,6 +13,8 @@ const Position = require("../../models/Attributes/Position.model");
 const Transcript = require("../../models/Attributes/Transcript.model");
 const Work_History = require("../../models/Attributes/Work_History.model");
 
+const User = require("../../models/Entities/User.model");
+
 //Logs
 const Logs = require("../../models/Attributes/Logs.model");
 
@@ -110,6 +112,13 @@ const mutations = {
             position: new_position,
         });
 
+        const new_user = new User({ 
+            username: employee_number,
+            password: 'password',
+            role: args.role
+        });
+
+
         const attendance = new Attendance({
             employee_id: new_employee._id
         });
@@ -128,7 +137,9 @@ const mutations = {
                 return deduction.save().then(result => {
                     return attendance.save().then(result =>{
                         return new_employee.updateOne({attendance: attendance._id, incentive: incentive._id, deduction: deduction._id}).then(result=>{
-                            return transformEmployee(employee);
+                            return new_user.save().then(user => {
+                                return transformEmployee(employee);
+                            })
                         });
                     })
                 })

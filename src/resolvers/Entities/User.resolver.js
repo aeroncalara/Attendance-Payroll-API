@@ -34,7 +34,7 @@ const mutations = {
 			if(password.length < 6) return {message: "Password too short!", success: false, data: null}
 
 			const new_user = new User({
-				username, password, email_address
+				username, password
 			});
 
 			return new_user.save().then(result =>{
@@ -52,7 +52,7 @@ const mutations = {
 
 
 			return user.updateOne({is_logged_in: true}).then(result => {
-				return {message: `User logged in!`, success: true, data: {hash: user.username, logged_in: true}}
+				return {message: `User logged in!`, success: true, data: {hash: user.username, logged_in: true, role: user.role}}
 			})
 		})
 	},

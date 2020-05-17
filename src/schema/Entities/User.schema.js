@@ -19,7 +19,8 @@ exports.types = `
 
     type Sign_In_Props{
         hash: String
-        logged_in: Boolean        
+        logged_in: Boolean
+        role: String        
     }
 
     type Sign_In_Response{

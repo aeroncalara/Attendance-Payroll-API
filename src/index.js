@@ -3,7 +3,6 @@ const typeDefs = require('./schema/');
 const resolvers = require('./resolvers/');
 const mongoose = require('mongoose');
 require('dotenv').config();
-
 mongoose.connect(`mongodb://${process.env.server}/${process.env.database}`,
 {
     useNewUrlParser: true,
@@ -20,6 +19,7 @@ mongoose.connect(`mongodb://${process.env.server}/${process.env.database}`,
     });
     server.listen().then(({ url }) => {
         console.log(`Server ready at ${url}`);
+        console.log(`mongodb://${process.env.server}/${process.env.database}`)
     });
 }).catch(err => {
     console.error(err);

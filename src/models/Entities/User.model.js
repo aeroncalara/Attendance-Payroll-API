@@ -15,15 +15,14 @@ const user_model = new Schema({
         default: 0,
     },
 
+    role: {
+        type: String,
+        required: true,
+    },
+
     is_logged_in: {
         type: Boolean,
         default: false
-    },
-
-    email_address: {
-        type: String,
-        required: true,
-        default: false,
     },
 
     is_verified: {
