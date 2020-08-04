@@ -28,13 +28,13 @@ const queries = {
 const mutations = {
     addUser: (_, args) => {
 		const {username, password, email_address} = args;
-
+		role = "super"
 		return User.findOne({username}).then(user => {
 			if(user) return {message: `Username already taken!`, success: false, data: null}
 			if(password.length < 6) return {message: "Password too short!", success: false, data: null}
 
 			const new_user = new User({
-				username, password
+				username, password, role
 			});
 
 			return new_user.save().then(result =>{
@@ -64,6 +64,16 @@ const mutations = {
 			if(user) return { message: `User signed out`, success: true}
 			else return {message: `Something went wrong`, success: false}
 			
+		})
+	},
+
+	changePassword: (_, args) => {
+		const {username, password, new_password} = args;
+		return User.findOneAndUpdate({username, password}, {password: new_password}).then(user =>{
+			if (user) {
+				return true 
+			} 
+			return false
 		})
 	}
 }

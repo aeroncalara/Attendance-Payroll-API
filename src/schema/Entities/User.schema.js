@@ -53,6 +53,7 @@ exports.mutations = `
     addUser(username: String, password: String, email_address: String): User_Response
     signIn(username: String, password: String): Sign_In_Response
     signOut(username: String): Sign_Out_Response
+    changePassword(username: String, password: String, new_password: String): Boolean
 
 `;
 
